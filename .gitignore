@@ -1,0 +1,7 @@
+sources/raw/
+sources/audio/
+sources/docs/*.pdf
+evidence/hadith/ara-*.json
+evidence/quran/*.json
+cards_test/
+__pycache__/
