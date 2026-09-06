@@ -10,6 +10,26 @@ SETUP (one time — skip any step already done)
 5. Read STATE.md and HANDOFF.md in full before starting. They are in Thai — read them anyway,
    they carry all the agreed rules.
 
+STEP 0 — RE-TRANSCRIBE ON GPU FIRST (do this before extracting any cards)
+If this machine has a GPU, always do this first. It costs zero Claude quota and improves everything
+downstream. The transcripts currently in the repo are YouTube auto-captions: roughly 60% readable,
+Arabic terms wrong almost everywhere, page and verse numbers mangled.
+
+A. pip install torch --index-url https://download.pytorch.org/whl/cu124
+   pip install transformers accelerate librosa soundfile
+B. python scripts/download_audio.py        (fetches audio for all 114 clips, about 10 GB, resumable)
+C. python scripts/transcribe_gpu.py        (Typhoon Whisper large v3, Thai-tuned on 11,000 hours)
+   Leave it running overnight. It prints its realtime speed factor. Resumable.
+D. python scripts/promote_gpu_transcripts.py   (makes the new transcripts primary, backs up the old)
+E. Then continue from step 5 below.
+
+If there is no GPU, skip step 0 entirely and extract from the existing transcripts.
+
+Note: passages where the teacher recites Quran in Arabic will still come out garbled, because the
+model is tuned on Thai speech. That is fine — Arabic source text is pulled from standard databases
+during the evidence-verification stage. What improves sharply is Thai prose, scholar names, book
+titles and numbers, which is most of the problem.
+
 THE JOB: extract "idea cards" from the remaining lecture clips. 80 clips are left.
 6. Run: python scripts/next_batch.py 6   to see which clips still have no cards
 7. Take the template in scripts/EXTRACT_PROMPT.md, fill in every {PLACEHOLDER}, and spawn one
@@ -38,6 +58,11 @@ DO NOT
   which is the single most important field in this project.
 - Do not drop any topic during extraction, even material too advanced for a new Muslim.
   Label it "ลึกเกิน" (too deep) instead. Filtering happens later, when the book is written.
+
+If you did step 0: the 34 existing card files were extracted from the older, worse transcripts.
+promote_gpu_transcripts.py lists exactly which ones. The correct order is to finish the 80 clips
+that have no cards first, then redo the old ones if quota allows (delete the card file and
+next_batch.py will offer that clip again).
 
 When everything is done, report: how many clips, how many cards, and which clips had subtitles
 so poor that someone will need to go back and listen to the actual audio.
