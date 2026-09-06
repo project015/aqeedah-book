@@ -1,7 +1,18 @@
 # Task — read this and start
 
-Do every step yourself, end to end. Do not stop to ask me anything along the way.
-Keep going until every clip is done or the project owner tells you to stop.
+Do every step yourself, end to end. Keep going until every clip is done or the owner stops you.
+
+ON STOPPING TO ASK — be precise about this
+Never stop to ask permission for routine work: launching the next clip, committing, continuing
+after a usage limit. Just do it, and resume on your own when a limit resets.
+
+But DO stop and report immediately if you hit any of these five, because they mean an assumption
+behind the job is broken rather than something merely being slow:
+1. transcripts missing or corrupted across more than 5 clips
+2. more than 5 clips deleted or private on YouTube so audio cannot be fetched
+3. subagents returning malformed output on 3 consecutive clips despite following the template
+4. out of disk space, or GPU out of memory so transcription cannot run
+5. anything requiring you to delete files beyond the card-redo procedure described here
 
 SETUP (one time — skip any step already done)
 1. pip install yt-dlp pymupdf
@@ -46,7 +57,8 @@ THE JOB: extract "idea cards" from the remaining lecture clips. 80 clips are lef
 10. If you hit a usage limit, resume the moment it resets. Do not wait for me to tell you.
     Subagents killed by a limit often wrote their file already but incompletely, so always
     apply the check in step 8 before deciding whether to redo a clip.
-11. Commit after roughly every 5 new clips. Write commit messages in Thai.
+11. Commit after roughly every 5 new clips, in Thai. Local commits only — do not push, you have
+    no write access to the repo. Commits are just restore points.
 
 IMPORTANT: the card files themselves must be written in Thai, following scripts/CARD_FORMAT.md
 exactly. Only your conversation with me is in English.
@@ -59,10 +71,20 @@ DO NOT
 - Do not drop any topic during extraction, even material too advanced for a new Muslim.
   Label it "ลึกเกิน" (too deep) instead. Filtering happens later, when the book is written.
 
-If you did step 0: the 34 existing card files were extracted from the older, worse transcripts.
-promote_gpu_transcripts.py lists exactly which ones. The correct order is to finish the 80 clips
-that have no cards first, then redo the old ones if quota allows (delete the card file and
-next_batch.py will offer that clip again).
+IF YOU DID STEP 0 — redo the old cards in this fixed order
+The 34 existing card files came from the older, worse transcripts. promote_gpu_transcripts.py
+prints exactly which ones. Do not try to judge whether "quota allows" — you cannot measure that.
+Just work down this list until it is finished or you are told to stop.
+
+- PHASE 1: extract the 80 clips that have no cards. Do not touch phase 2 until next_batch.py
+  reports 0 remaining.
+- PHASE 2: redo the old cards, in this priority order, one clip at a time exactly as in phase 1:
+  1. series 2020 episodes 11-28 (tawhid, shirk, angels — the core of the book)
+  2. series 2020 episodes 1-10 (introduction, why study creed, proofs of God)
+  3. everything else
+  To redo a clip: delete its card file and next_batch.py will offer it again.
+  Commit once before deleting, so the old version can be recovered if the new one comes out worse.
+- If a usage limit interrupts either phase, continue from where you were once it resets.
 
 When everything is done, report: how many clips, how many cards, and which clips had subtitles
 so poor that someone will need to go back and listen to the actual audio.
