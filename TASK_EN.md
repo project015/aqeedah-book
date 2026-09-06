@@ -1,25 +1,10 @@
-# Start here — one prompt, paste into Claude Code
+# Task — read this and start
 
-## Before pasting: set your model
-Type `/model` and pick **Opus 5 (1M context)**.
-This job runs for many hours and the main session accumulates a lot of agent reports.
-A small context window forces frequent compaction and the session loses track of progress.
-
-If your account has no Opus, use the strongest model you have — but **never use Sonnet for the
-extraction subagents**. It was tested and it drops evidence: 3 citations captured out of 17.
-The comparison table is at the bottom of `STATE.md`.
-
----
-
-Open Claude Code in any empty folder, paste the whole block below, press Enter once.
-
-```
-Continue the Islamic creed (aqeedah) book research project. Do every step yourself, end to end.
-Do not stop to ask me anything along the way.
+Do every step yourself, end to end. Do not stop to ask me anything along the way.
+Keep going until every clip is done or the project owner tells you to stop.
 
 SETUP (one time — skip any step already done)
-1. git clone https://github.com/project015/aqeedah-book.git and work inside that folder
-2. pip install yt-dlp pymupdf
+1. pip install yt-dlp pymupdf
 3. Copy the folder _skill/research-book to ~/.claude/skills/research-book
 4. Run: python scripts/restore_evidence.py   (re-downloads the Quran and hadith databases)
 5. Read STATE.md and HANDOFF.md in full before starting. They are in Thai — read them anyway,
@@ -56,4 +41,3 @@ DO NOT
 
 When everything is done, report: how many clips, how many cards, and which clips had subtitles
 so poor that someone will need to go back and listen to the actual audio.
-```
