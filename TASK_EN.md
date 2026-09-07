@@ -90,5 +90,29 @@ Just work down this list until it is finished or you are told to stop.
   Commit once before deleting, so the old version can be recovered if the new one comes out worse.
 - If a usage limit interrupts either phase, continue from where you were once it resets.
 
-When everything is done, report: how many clips, how many cards, and which clips had subtitles
-so poor that someone will need to go back and listen to the actual audio.
+DELIVERING THE WORK BACK — read all of this, do not send only the cards
+
+TWO things must come back, not one:
+1. cards/ — all the extracted idea cards (the main product)
+2. sources/transcripts/ — the GPU re-transcribed text. THIS MATTERS.
+   The project owner's machine has no GPU and cannot regenerate this set. If it does not come
+   back it is gone for good, and both evidence-checking and the actual book writing fall back to
+   the poor YouTube auto-captions.
+3. sources/transcripts_gpu/ as well, if it still exists.
+
+Do NOT send back: sources/audio/ (about 10 GB, re-downloadable), the evidence/ Quran and hadith
+databases (restore_evidence.py fetches them), sources/raw/, sources/docs/*.pdf
+
+How to send:
+- If git push works, nothing extra is needed. Both cards and transcripts are tracked in git.
+  Make a final push and tell the owner you are done.
+- If push does not work, zip these two folders and send them: cards/ and sources/transcripts/
+  (roughly 40 MB together).
+
+CLOSING REPORT — cover all five points
+1. how many clips have cards, out of how many total, and the total card count
+2. whether GPU re-transcription completed, which model, and which clips failed
+3. how many old cards were redone in phase 2, and how many still come from the YouTube captions
+4. which clips had audio or captions bad enough that someone should listen to the real audio
+   during evidence verification
+5. anything blocked, undone, or that you are unsure about. Say it plainly rather than staying quiet.
