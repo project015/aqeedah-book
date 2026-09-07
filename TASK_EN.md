@@ -103,11 +103,22 @@ TWO things must come back, not one:
 Do NOT send back: sources/audio/ (about 10 GB, re-downloadable), the evidence/ Quran and hadith
 databases (restore_evidence.py fetches them), sources/raw/, sources/docs/*.pdf
 
-How to send:
-- If git push works, nothing extra is needed. Both cards and transcripts are tracked in git.
-  Make a final push and tell the owner you are done.
-- If push does not work, zip these two folders and send them: cards/ and sources/transcripts/
-  (roughly 40 MB together).
+How to send — pick one:
+
+OPTION A (best) push to GitHub. If `git push` works, nothing else is needed. Both cards and
+transcripts are tracked in git. Make a final push and tell the owner you are done.
+
+OPTION B zip to Google Drive, if push does not work.
+1. Zip both folders together, keeping the folder structure (do not zip the loose files):
+     aqeedah-work.zip
+       cards/
+       sources/transcripts/
+2. Upload to Google Drive
+3. IMPORTANT: set sharing to "Anyone with the link". If it stays restricted, the owner's side
+   downloads an HTML login page instead of the file.
+4. Send the link to the owner along with the five-point closing report below.
+
+Do not send through LINE or chat apps — files get recompressed or expire.
 
 CLOSING REPORT — cover all five points
 1. how many clips have cards, out of how many total, and the total card count
