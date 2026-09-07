@@ -57,8 +57,12 @@ THE JOB: extract "idea cards" from the remaining lecture clips. 80 clips are lef
 10. If you hit a usage limit, resume the moment it resets. Do not wait for me to tell you.
     Subagents killed by a limit often wrote their file already but incompletely, so always
     apply the check in step 8 before deciding whether to redo a clip.
-11. Commit after roughly every 5 new clips, in Thai. Local commits only — do not push, you have
-    no write access to the repo. Commits are just restore points.
+11. Commit after roughly every 5 new clips, in Thai, then TRY `git push`.
+    - If the push succeeds, you have been added as a collaborator. Push on every commit from then
+      on, so the owner sees progress arrive and can pull partial results without waiting.
+    - If it fails with 403 / permission denied, you have not been invited. Do not retry. Keep
+      committing locally and zip the `cards/` folder back at the end.
+      Never pause the work waiting for access — just carry on.
 
 IMPORTANT: the card files themselves must be written in Thai, following scripts/CARD_FORMAT.md
 exactly. Only your conversation with me is in English.
